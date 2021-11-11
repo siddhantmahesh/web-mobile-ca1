@@ -39,139 +39,51 @@
     </script>
   </head>
   <body>
-    <table
-      align="center"
-      width="90%"
-      cellpadding="4px"
-      cellspacing="2xp"
-      class="main-content"
-    >
-      <tr class="main-header" align="">
-        <td>
-          <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">Navbar</a>
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">
-                      Home
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a
-                      class="nav-link dropdown-toggle"
-                      href="#"
-                      id="navbarDropdown"
-                      role="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      Dropdown
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li>
-                        <a class="dropdown-item" href="#">Another action</a>
-                      </li>
-                      <li><hr class="dropdown-divider" /></li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          Something else here
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link disabled">Disabled</a>
-                  </li>
-                </ul>
-                <form class="d-flex">
-                  <input
-                    class="form-control me-2"
-                    type="search"
-                    placeholder="Search"
-                    aria-label="Search"
-                  />
-                  <button class="btn btn-outline-success" type="submit">
-                    Search
-                  </button>
-                </form>
-              </div>
-            </div>
-          </nav> -->
+    <div class="container-fluid">
+      <nav
+        class="navbar navbar-expand-md navbar-light"
+        style="padding: 10px; background-color: lightgray;"
+        id="navColorChange"
+        data-bs-toggle="collapse"
+      >
+        <a class="navbar-brand" href="#">Home</a>
 
-          <nav
-            class="navbar navbar-light"
-            style="padding: 10px; background-color: lightgray;"
-            id="navColorChange"
-            data-bs-toggle="collapse"
-          >
-            <a class="navbar-brand" href="#">Home</a>
-            <div class="dropdown">
-              <a
-                class="btn btn-light dropdown-toggle"
-                href="#"
-                role="button"
-                id="dropdownMenuLink"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Dropdown link
-              </a>
-
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </li>
-              </ul>
-            </div>
-
-            <a type="a" class="btn btn-light" onclick="doSomething()">
-              Home
-            </a>
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <button type="button" class="btn btn-light">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navList"
+          aria-controls="navList"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navList">
+          <ul class="navbar-nav">
+            <li>
+              <a class="nav-link">
                 Latest flix
-              </button>
-              <button type="button" class="btn btn-light">
+              </a>
+            </li>
+            <li>
+              <a class="nav-link">
                 Categories
-              </button>
-              <button type="button" class="btn btn-light">
+              </a>
+            </li>
+            <li>
+              <a class="nav-link">
                 Contact
-              </button>
-            </div>
-          </nav>
-        </td>
-      </tr>
-    </table>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link">
+                Latest flix
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
   </body>
 </html>
