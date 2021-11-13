@@ -12,5 +12,10 @@ function genreclick(){
 
 function contactUsClick(){
   document.getElementById('sec-4').style.display = 'block';
-  //document.getElementById('sec-4').style.display = 'flex';
+  document.getElementById('sec-4').style.display = 'flex';
+}
+
+function contactus(){
+  var name = document.getElementById("txt_name").value;
+  alert("Thnak you "+name+" for contacting US");
 }

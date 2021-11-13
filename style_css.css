@@ -44,18 +44,3 @@ section {
   background-color: #32CD32;
   cursor: pointer;
 }
-
-.contact{
-  margin-left: 500px;
-}
-
-.contactDetails{
-  margin-left: 150px;
-}
-
-.contactUsForm{
-  float: left;
-  width: 50%;
-  margin-left: 400px;
-  padding: 20px;
-}
