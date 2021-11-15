@@ -10,20 +10,29 @@ function onMouseLeave() {
   } catch (error) { }
 }
 
-function genreclick(){
-  document.getElementById('sec-2').style.display = "block";
-  document.getElementById('sec-2').style.display = "flex";
+// function movieListClick(){
+//   document.getElementById('sec-2').style.display = "block";
+//   document.getElementById('sec-2').style.display = "flex";
 
-}
+// }
 
-function contactUsClick(){
-  document.getElementById('sec-5').style.display = 'block';
-  document.getElementById('sec-5').style.display = 'flex';
-}
+// function contactUsClick(){
+//   document.getElementById('sec-5').style.display = 'block';
+//   document.getElementById('sec-5').style.display = 'flex';
+// }
 
 function contactus(){
   var name = document.getElementById("txt_name").value;
-  alert("Thnak you "+name+" for contacting US");
+  alert("Thnak you " + name + " for contacting us");
+}
+
+function movieRent(){
+  document.getElementById('sec-4').style.display = 'block';
+  document.getElementById('sec-4').style.display = 'flex';
+}
+
+function clickRentMovie(selectedMovie){
+  alert("Thank you for renting "+selectedMovie.title+" movie");
 }
 const data = {
   movies: [

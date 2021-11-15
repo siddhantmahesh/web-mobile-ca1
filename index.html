@@ -11,17 +11,17 @@
 <body>
   <div class="container-fluid">
     <div class="mainHeadingContainer">
-      <h1 class="mainHeading">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MOVIES
+      <p class="mainHeading">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MOVIES
         <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.COM
-      </h1>
+      </p>
     </div>
     <section id='sec-1'>
-      <div><a href='#sec-2'><button class='btn btn-outline-dark' id='genre' onclick="genreclick()">Movies</button></a>
+      <div><a href='#sec-2'><button class='btn btn-dark' id='genre'>Movies</button></a>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href='#sec-5'><button class='btn btn-outline-dark' id='contactus' onclick="contactUsClick()">Contact
+        <a href='#sec-5'><button class='btn btn-dark' id='contactus'>Contact
             Us</button></a>
       </div>
 
@@ -36,6 +36,30 @@
     <section id="sec-3">
       <div class="moviePage">
       </div>
+    </section>
+    <section id="sec-4">
+      <table>
+        <tr>
+          <td>
+            <h1>Subcribe</h1>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>Name *</p>
+            <input id="txt_name" type="text" Required="required">
+            <p>Email *</p>
+            <input id="txt_email" type="email" onkeypress="validate()" Required="required">
+            <!-- <h2 id="result"></h2> -->
+            <p>Phone *</p>
+            <input id="txt_phone" type="number" Required="required">
+            <br>
+            <br>
+            <input type="submit" id="btn_send" value="RENT" class="btn btn-dark"
+              onclick="clickRentMovie(selectedMovie);">
+          </td>
+        </tr>
+      </table>
     </section>
     <section id='sec-5'>
       <table>
@@ -52,21 +76,21 @@
             <div class="">
               <p>
                 Address <br />
-                <span> Ash Lane 110
+                <span> 105 Cork Street
                   <br />
-                  London, UK
+                  Dublin, Ireland
                 </span>
               </p>
               <br><br>
               <p>
                 Let's Talk <br />
-                <span> 0787878787</span>
+                <span> 1800-576-576</span>
               </p>
               <br><br>
               <p>
               <p>
                 General Support <br />
-                <span>contact@example.com</span>
+                <span>support@movies.com</span>
               </p>
               <br><br>
             </div>
@@ -75,7 +99,7 @@
             <p>Name *</p>
             <input id="txt_name" type="text" Required="required">
             <p>Email *</p>
-            <input id="txt_email" type="email" onkeypress="validate()" Required="required">
+            <input id="txt_email" type="email" Required="required">
             <!-- <h2 id="result"></h2> -->
             <p>Phone *</p>
             <input id="txt_phone" type="number" Required="required">
@@ -83,8 +107,8 @@
             <input id="txt_subject" type="text" Required="required">
             <p>Message *</p>
             <textarea id="txt_message" rows="2" cols="23" Required="required"></textarea>
-            <br>
-            <input type="submit" id="btn_send" value="SEND" onclick="contactus()">
+            <br><br>
+            <input type="submit" id="btn_send" class="btn btn-dark" value="SEND" onclick="contactus()">
           </td>
         </tr>
       </table>
@@ -114,6 +138,7 @@
 
     $(document).ready(() => {
       document.getElementById("sec-3").style.display = "none"
+      document.getElementById("sec-4").style.display = "none"
       let cards = ''
       data.movies.forEach((item) => {
         console.log(item.title + '/')
@@ -211,7 +236,7 @@
         + '</tr >'
         + '<tr>'
         + '<td style="text-align: left;"><button type="button" class="btn btn-outline-light" onclick="onClickBack()">Back</button></td>'
-        + '<td style="text-align: right;"><button type="button" class="btn btn-outline-success">Select</button></td>'
+        + '<td style="text-align: right;"> <a href="#sec-4"><button type="button" onclick="movieRent();" class="btn btn-outline-success">Select</button></a></td>'
         + '</tr>'
         + '</table>'
         + '</p >'
