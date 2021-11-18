@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -16,25 +17,33 @@
       </p>
     </div>
     <section id='sec-1'>
-      <div><a href='#sec-2'><button class='btn btn-dark' id='genre'>Movies</button></a>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href='#sec-5'><button class='btn btn-dark' id='contactus'>Contact
-            Us</button></a>
+      <div>
+        <table cellspacing="15px">
+          <tr>
+            <td class="tdMovie"><button class='btn btn-light' id='genre'>Movies</button></td>
+            <td class="tdContact"><button class='btn btn-light' id='contactus'>Contact Us</button></td>
+          </tr>
+        </table>
+        <input id="searchBar" type="text" name="search" class="form-control search-input" placeholder="Filter By Name">
+        <button onclick="filter()" class="btn btn-md btn-light">Search</button>
       </div>
 
 
     </section>
     <section id="sec-2">
-      <div class="container">
-        <div class="row rowOuter">
+      <!-- <div class="container-fluid"> -->
+      <div class="row rowOuter justify-content-center">
+      </div>
+      <!-- </div> -->
+    </section>
+    <section id="sec-6">
+      <div class="container containerFilter">
+        <div class="row rowOuterFilter justify-content-center">
         </div>
       </div>
     </section>
     <section id="sec-3">
-      <div class="moviePage">
+      <div class="table-responsive-sm moviePage" style="text-align: center;">
       </div>
     </section>
     <section id="sec-4">
@@ -62,18 +71,19 @@
       </table>
     </section>
     <section id='sec-5'>
-      <table>
-        <tr>
-          <td>
-            <h1>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact US</p>
-            </h1>
-          </td>
-        </tr>
-        <br><br>
-        <tr>
-          <td> <br><br>
-            <div class="">
+      <div class="table-responsive-sm">
+        <table>
+          <tr>
+            <td style="text-align: center;">
+              <h1>
+                <p>Contact US</p>
+              </h1>
+            </td>
+          </tr>
+          <br><br>
+          <tr>
+            <td> <br><br>
+
               <p>
                 Address <br />
                 <span> 105 Cork Street
@@ -93,25 +103,25 @@
                 <span>support@movies.com</span>
               </p>
               <br><br>
-            </div>
-          </td>
-          <td>
-            <p>Name *</p>
-            <input id="txt_name" type="text" Required="required">
-            <p>Email *</p>
-            <input id="txt_email" type="email" Required="required">
-            <!-- <h2 id="result"></h2> -->
-            <p>Phone *</p>
-            <input id="txt_phone" type="number" Required="required">
-            <p>Subject *</p>
-            <input id="txt_subject" type="text" Required="required">
-            <p>Message *</p>
-            <textarea id="txt_message" rows="2" cols="23" Required="required"></textarea>
-            <br><br>
-            <input type="submit" id="btn_send" class="btn btn-dark" value="SEND" onclick="contactus()">
-          </td>
-        </tr>
-      </table>
+            </td>
+            <td>
+              <p>Name *</p>
+              <input id="txt_name" type="text" Required="required">
+              <p>Email *</p>
+              <input id="txt_email" type="email" Required="required">
+              <!-- <h2 id="result"></h2> -->
+              <p>Phone *</p>
+              <input id="txt_phone" type="number" Required="required">
+              <p>Subject *</p>
+              <input id="txt_subject" type="text" Required="required">
+              <p>Message *</p>
+              <textarea id="txt_message" rows="2" cols="23" Required="required"></textarea>
+              <br><br>
+              <input type="submit" id="btn_send" class="btn btn-dark" value="SEND" onclick="contactus()">
+            </td>
+          </tr>
+        </table>
+      </div>
     </section>
   </div>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -141,7 +151,7 @@
       document.getElementById("sec-4").style.display = "none"
       let cards = ''
       data.movies.forEach((item) => {
-        console.log(item.title + '/')
+        // console.log(item.title + '/')
         cards +=
           '<div class="col colOuter">' +
           '<div class="card cardOuter" id=' +
@@ -159,11 +169,55 @@
           '</div>'
       })
       $('div.rowOuter').append(cards)
-      console.log(cards)
+      // console.log(cards)
 
     })
 
-    //function to 
+    function filter() {
+      let searchText = document.getElementById("searchBar").value
+
+      let filteredMovies = []
+
+      if (searchText.trim() === "") {
+        $("div.rowOuterFilter").empty()
+        document.getElementById("sec-2").style.display = ""
+        document.getElementById("sec-6").style.display = "none"
+      }
+      else {
+        data.movies.forEach((item) => {
+          if (item.title.toLowerCase().includes(searchText.toLowerCase())) {
+            filteredMovies.push(item)
+          }
+        })
+
+        // console.log(filteredMovies)
+
+        let filteredCards = ''
+        filteredMovies.forEach((item) => {
+          // console.log(item.title + '/')
+          filteredCards +=
+            '<div class="col colOuter">' +
+            '<div class="card cardOuter" id=' +
+            item.id +
+            ' onmouseover="onMouseOver()" onmouseleave="onMouseLeave()" onclick="onClickMovie(this.id)">' +
+            '<img class="card-img-top cardImgOuter" src=' +
+            item.coverPic +
+            ' alt="Card image cap"/>' +
+            '<div class="card-body cardBodyOuter">' +
+            '<h6 class="card-title cardTitleOuter">' +
+            item.title +
+            '</h6>' +
+            '</div>' +
+            '</div>' +
+            '</div>'
+        })
+        $('div.rowOuterFilter').append(filteredCards)
+        document.getElementById("sec-2").style.display = "none"
+        document.getElementById("sec-6").style.display = ""
+      }
+    }
+
+    //function to
     // 1) render selected movie details
     // 2) hide movie list section
     // 3) un hide movie details section
@@ -173,6 +227,7 @@
       document.getElementById("sec-1").style.display = "none"
       document.getElementById("sec-2").style.display = "none"
       document.getElementById("sec-5").style.display = "none"
+      document.getElementById("sec-6").style.display = "none"
 
       selectedMovie = data.movies.filter(item => item.id === id)[0]
 
@@ -180,73 +235,73 @@
       let movie = ''
       movie = '<table class="table table-dark">'
         + '<tr>'
-        + '<td style=" width: 50%; text-align: justified;">'
-        + '<p style="align-content: justified;">'
+        + '<td class="tdDesc">'
+        + '<p>'
         + selectedMovie.desc
         + '</p>'
         + '<p>'
         + '<table class="table table-dark">'
         + '<tr>'
-        + '<td style="text-align: left;">'
-        + 'Genre'
+        + '<td class="td1">'
+        + 'Genre:'
         + '</td>'
-        + '<td style="text-align: right;">'
+        + '<td class="td2" >'
         + selectedMovie.genre
         + '</td>'
         + '</tr>'
         + '<tr>'
-        + '<td style="text-align: left;">'
-        + 'Directed By'
+        + '<td class="td1">'
+        + 'Directed By:'
         + '</td>'
-        + '<td style="text-align: right;">'
+        + '<td class="td2" >'
         + selectedMovie.director
         + '</td>'
         + '</tr>'
         + '<tr>'
-        + '<td style="text-align: left;">'
-        + 'Produced By'
+        + '<td class="td1">'
+        + 'Produced By:'
         + '</td>'
-        + '<td style="text-align: right;">'
+        + '<td class="td2" >'
         + selectedMovie.producer
         + '</td>'
         + '</tr>'
         + '<tr>'
-        + '<td style="text-align: left;" >'
-        + 'Released'
+        + '<td class="td1">'
+        + 'Released:'
         + '</td >'
-        + '<td style="text-align: right;" >'
+        + '<td class="td2"  >'
         + selectedMovie.releaseDate
         + '</td >'
         + '</tr >'
         + '<tr>'
-        + '<td style="text-align: left;" >'
-        + 'Rating'
+        + '<td class="td1">'
+        + 'Rating:'
         + '</td >'
-        + '<td style="text-align: right;" >'
+        + '<td class="td2">'
         + selectedMovie.rating
         + '</td >'
         + '</tr >'
         + '<tr>'
-        + '<td style="text-align: left;" >'
-        + 'Price'
+        + '<td class="td1">'
+        + 'Price:'
         + '</td >'
-        + '<td style="text-align: right;" >'
+        + '<td class="td2">'
         + selectedMovie.price
         + '</td >'
         + '</tr >'
         + '<tr>'
-        + '<td style="text-align: left;"><button type="button" class="btn btn-outline-light" onclick="onClickBack()">Back</button></td>'
-        + '<td style="text-align: right;"> <a href="#sec-4"><button type="button" onclick="movieRent();" class="btn btn-outline-success">Select</button></a></td>'
+        + '<td class="td1"><button type="button" class="btn btn-outline-light" onclick="onClickBack()">Back</button></td>'
+        + '<td class="td2"><button type="button" onclick="movieRent();" class="btn btn-outline-success">Select</button></td>'
         + '</tr>'
         + '</table>'
         + '</p >'
         + '</td >'
-        + '<td style="width: 50%; text-align: center;">'
+        + '<td class="tdDesc" style="text-align: center;">'
         + '<img class="coverPicMoviePage" src="' + selectedMovie.coverPic + '" alt="" style="min-height: 450px; align-items: center;"/>'
         + '</td>'
         + '</tr >'
         + '<tr>'
-        + '<td colspan=100%>'
+        + '<td colspan=100% style="text-align: left;">'
         + '<p style="font-size: 18px; font-weight: bold;">'
         + 'Stills'
         + '</p >'
@@ -263,8 +318,8 @@
           + item.toString()
           + '" alt=""'
           + 'style="width: auto; height: 220px;" />'
-          + '<div class="card-body">'
-          + '</div >'
+          // + '<div class="card-body">'
+          // + '</div >'
           + '</div >'
           + '</div >'
       })
@@ -273,7 +328,7 @@
         + '</td >'
         + '</tr>'
         + '<tr>'
-        + '<td colspan=100%>'
+        + '<td colspan=100% style="text-align: left;>'
         + '<p style="font-size: 18px; font-weight: bold;">'
         + 'Cast'
         + '</p >'
@@ -305,7 +360,7 @@
         + '</table >'
       $("div.moviePage").append(movie)
 
-      console.log(movie)
+      // console.log(movie)
       // 3) un hide movie details section
       document.getElementById("sec-3").style.display = ""
 
@@ -313,7 +368,7 @@
     }
 
 
-    //function to 
+    //function to
     // 1) un hide movie list section
     // 2) hide movie details section
     function onClickBack() {
@@ -323,6 +378,12 @@
       document.getElementById("sec-5").style.display = ""
 
       document.getElementById("sec-3").style.display = "none"
+      document.getElementById("sec-4").style.display = "none"
+
+      document.getElementById("searchBar").value = "";
+
+      $("div.rowOuterFilter").empty()
+      document.getElementById("sec-6").style.display = "none"
 
       $("div.moviePage").empty()
 

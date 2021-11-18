@@ -1,3 +1,16 @@
+
+$("#genre").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#sec-2").offset().top
+    }, 0);
+});
+
+$("#contactus").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#sec-5").offset().top
+    }, 0);
+});
+
 function onMouseOver() {
   try {
     document.getElementById(event.target.id).style =
@@ -27,6 +40,9 @@ function contactus(){
 }
 
 function movieRent(){
+  $('html, body').animate({
+      scrollTop: $("#sec-4").offset().top
+  }, 0);
   document.getElementById('sec-4').style.display = 'block';
   document.getElementById('sec-4').style.display = 'flex';
 }
