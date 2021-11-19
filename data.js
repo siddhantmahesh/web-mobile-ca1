@@ -1,55 +1,55 @@
 
-$("#genre").click(function() {
-    $('html, body').animate({
-        scrollTop: $("#sec-2").offset().top
-    }, 0);
+//SLIDES DOWN TO SEC-2
+$("#genre").click(() => {
+  $('html, body').animate({
+    scrollTop: $("#sec-2").offset().top
+  }, 0);
 });
 
-$("#contactus").click(function() {
-    $('html, body').animate({
-        scrollTop: $("#sec-5").offset().top
-    }, 0);
+//SLIDES DOWN TO SEC-5
+$("#contactus").click(() => {
+  $('html, body').animate({
+    scrollTop: $("#sec-5").offset().top
+  }, 0);
 });
 
+// CHANGES CARD COLOR ON MOUSE HOVER
 function onMouseOver() {
   try {
     document.getElementById(event.target.id).style =
       'background-color: #d3d3d3;'
   } catch (error) { }
 }
+
+// CHANGES CARD COLOR ON MOUSE HOVER
 function onMouseLeave() {
   try {
     document.getElementById(event.target.id).style = 'background-color: white;'
   } catch (error) { }
 }
 
-// function movieListClick(){
-//   document.getElementById('sec-2').style.display = "block";
-//   document.getElementById('sec-2').style.display = "flex";
-
-// }
-
-// function contactUsClick(){
-//   document.getElementById('sec-5').style.display = 'block';
-//   document.getElementById('sec-5').style.display = 'flex';
-// }
-
-function contactus(){
+// CONTACT US POP UP
+function contactus() {
   var name = document.getElementById("txt_name").value;
   alert("Thnak you " + name + " for contacting us");
 }
 
-function movieRent(){
+// SLIDE TO SEC-4
+function movieRent() {
   $('html, body').animate({
-      scrollTop: $("#sec-4").offset().top
+    scrollTop: $("#sec-4").offset().top
   }, 0);
   document.getElementById('sec-4').style.display = 'block';
   document.getElementById('sec-4').style.display = 'flex';
 }
 
-function clickRentMovie(selectedMovie){
-  alert("Thank you for renting "+selectedMovie.title+" movie");
+// RENT POPUP
+function clickRentMovie(selectedMovie) {
+  alert("Thank you for renting " + selectedMovie.title + " movie");
 }
+
+
+// SAMPLE DATA
 const data = {
   movies: [
     {

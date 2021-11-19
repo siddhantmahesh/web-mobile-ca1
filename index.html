@@ -11,41 +11,61 @@
 
 <body>
   <div class="container-fluid">
+
+    <!-- HEADER START -->
     <div class="mainHeadingContainer">
-      <p class="mainHeading">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MOVIES
+      <p class="mainHeading">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MOVIES
         <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.COM
       </p>
     </div>
+    <!-- HEADER END -->
+
+    <!-- NAVIGAITON START -->
     <section id='sec-1'>
       <div>
         <table cellspacing="15px">
           <tr>
+            <!-- NAVIGATE TO SEC-2 -->
             <td class="tdMovie"><button class='btn btn-light' id='genre'>Movies</button></td>
+
+            <!-- NAVIGATE TO SEC-5 -->
             <td class="tdContact"><button class='btn btn-light' id='contactus'>Contact Us</button></td>
           </tr>
         </table>
         <input id="searchBar" type="text" name="search" class="form-control search-input" placeholder="Filter By Name">
         <button onclick="filter()" class="btn btn-md btn-light">Search</button>
       </div>
-
-
     </section>
+    <!-- NAVIGATION END -->
+
+    <!-- MOVIE LIST START -->
     <section id="sec-2">
-      <!-- <div class="container-fluid"> -->
       <div class="row rowOuter justify-content-center">
+        <!-- APPEND MOVIE LIST HERE -->
       </div>
-      <!-- </div> -->
     </section>
+    <!-- MOVIE LIST END -->
+
+    <!-- FILTERED MOVIES START -->
     <section id="sec-6">
       <div class="container containerFilter">
         <div class="row rowOuterFilter justify-content-center">
+          <!-- APPEND MOVIE LIST HERE -->
         </div>
       </div>
     </section>
+    <!-- FILTERED MOVIES END -->
+
+    <!-- MOVIE DETAILS START -->
     <section id="sec-3">
       <div class="table-responsive-sm moviePage" style="text-align: center;">
+        <!-- APPEND MOVIE DATA HERE -->
       </div>
     </section>
+    <!-- MOVIE DETAILS END -->
+
+    <!-- MOVIE SUBSCRIPTION START -->
     <section id="sec-4">
       <table>
         <tr>
@@ -59,7 +79,6 @@
             <input id="txt_name" type="text" Required="required">
             <p>Email *</p>
             <input id="txt_email" type="email" onkeypress="validate()" Required="required">
-            <!-- <h2 id="result"></h2> -->
             <p>Phone *</p>
             <input id="txt_phone" type="number" Required="required">
             <br>
@@ -70,6 +89,9 @@
         </tr>
       </table>
     </section>
+    <!-- MOVIE SUBSCRIPTION END -->
+
+    <!-- GENERAL SUPPORT START -->
     <section id='sec-5'>
       <div class="table-responsive-sm">
         <table>
@@ -82,8 +104,7 @@
           </tr>
           <br><br>
           <tr>
-            <td> <br><br>
-
+            <td><br><br>
               <p>
                 Address <br />
                 <span> 105 Cork Street
@@ -109,7 +130,6 @@
               <input id="txt_name" type="text" Required="required">
               <p>Email *</p>
               <input id="txt_email" type="email" Required="required">
-              <!-- <h2 id="result"></h2> -->
               <p>Phone *</p>
               <input id="txt_phone" type="number" Required="required">
               <p>Subject *</p>
@@ -123,7 +143,10 @@
         </table>
       </div>
     </section>
+    <!-- GENERAL SUPPORT END -->
+
   </div>
+
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
     </script>
@@ -150,8 +173,12 @@
       document.getElementById("sec-3").style.display = "none"
       document.getElementById("sec-4").style.display = "none"
       let cards = ''
+
+      // FETCH DATA FROM FILE
       data.movies.forEach((item) => {
         // console.log(item.title + '/')
+
+        // CREATE MOVIE CARDS FOR EACH MOVIE 
         cards +=
           '<div class="col colOuter">' +
           '<div class="card cardOuter" id=' +
@@ -174,10 +201,13 @@
     })
 
     function filter() {
+      $('div.rowOuterFilter').empty()
+
       let searchText = document.getElementById("searchBar").value
 
       let filteredMovies = []
 
+      // CHECK MATCH WITH MOVIE NAME AND FILTER
       if (searchText.trim() === "") {
         $("div.rowOuterFilter").empty()
         document.getElementById("sec-2").style.display = ""
@@ -195,6 +225,8 @@
         let filteredCards = ''
         filteredMovies.forEach((item) => {
           // console.log(item.title + '/')
+
+          // CREATE MOVIE CARDS FOR EACH MOVIE 
           filteredCards +=
             '<div class="col colOuter">' +
             '<div class="card cardOuter" id=' +
@@ -211,19 +243,31 @@
             '</div>' +
             '</div>'
         })
-        $('div.rowOuterFilter').append(filteredCards)
+
+        if (filteredCards != "") { //APPEND CARDS TO SECTION 6
+          $('div.rowOuterFilter').append(filteredCards)
+        } else { //APPEND ERROR MESSAGE IF NO MOVIES FOUND
+          let strMessage = '<p style="text-align: center; color: white; font-size:50px; font-family: Impact, Haettenschweiler, Arial Narrow Bold, sans-serif;">Movie Unavailable</p>';
+          $('div.rowOuterFilter').append(strMessage)
+        }
+
         document.getElementById("sec-2").style.display = "none"
         document.getElementById("sec-6").style.display = ""
+
+        //SCROLL TO SECTION-6
+        $('html, body').animate({
+          scrollTop: $("#sec-6").offset().top
+        }, 0);
       }
     }
 
     //function to
     // 1) render selected movie details
-    // 2) hide movie list section
+    // 2) hide OTHER SECTIONS
     // 3) un hide movie details section
     function onClickMovie(id) {
 
-      // 2) hide movie list section
+      // 2) hide OTHER SECTIONS
       document.getElementById("sec-1").style.display = "none"
       document.getElementById("sec-2").style.display = "none"
       document.getElementById("sec-5").style.display = "none"
@@ -318,8 +362,6 @@
           + item.toString()
           + '" alt=""'
           + 'style="width: auto; height: 220px;" />'
-          // + '<div class="card-body">'
-          // + '</div >'
           + '</div >'
           + '</div >'
       })
@@ -361,10 +403,11 @@
       $("div.moviePage").append(movie)
 
       // console.log(movie)
+
       // 3) un hide movie details section
       document.getElementById("sec-3").style.display = ""
 
-      window.scrollTo(top);
+      window.scrollTo(top); //AUTO-SCROLL TO THE TOP OF PAGE
     }
 
 
@@ -373,6 +416,7 @@
     // 2) hide movie details section
     function onClickBack() {
 
+      // UNHIDE OTHER SECTIONS
       document.getElementById("sec-1").style.display = ""
       document.getElementById("sec-2").style.display = ""
       document.getElementById("sec-5").style.display = ""
@@ -382,10 +426,11 @@
 
       document.getElementById("searchBar").value = "";
 
-      $("div.rowOuterFilter").empty()
+      $("div.rowOuterFilter").empty() //EMPTY LIST TO PREVENT DATA PERSISTENCE
+
       document.getElementById("sec-6").style.display = "none"
 
-      $("div.moviePage").empty()
+      $("div.moviePage").empty() //EMPTY LIST TO PREVENT DATA PERSISTENCE
 
       selectedMovie = {
         id: '',
